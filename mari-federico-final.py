@@ -42,7 +42,7 @@ def find_jobs():
         # define a condition, to know if the jobs were recently posted or not, use the keyword 'few' to search for these recent jobbs
         if 'few' in publishing_date:
             company_name = job.find('h3', class_= 'joblist-comp-name').text.replace(' ', '')
-            job_time = job.find('ul', class_ = "top-jd-dtl clearfix").text.replace(' ', '')
+            job_time = job.find('ul', class_ = "top-jd-dtl clearfix").text.replace(' ')
             key_skills = job.find('span', class_ = "srp-skills").text.replace(' ', '')
             # first tag or top tag on the website format:
             # travel to header, then to h2 tag, and finally to the a tag(information is stored there w/ link for info)
