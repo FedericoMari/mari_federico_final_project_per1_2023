@@ -20,7 +20,7 @@ from tkinter import ttk
 from tkinter import *
 
 # user could provide some information to specify the job 
-print("S...")
+print("Specify the skills you are unfamiliar with...")
 # later use this variable to 
 unfamiliar_skill = input('>')
 # will filter out/remove the input provided by the user...
@@ -37,12 +37,13 @@ def find_jobs():
     # use find_all() func to list all the jobs in website 
     jobs = soup.find_all('li', class_= "clearfix job-bx wht-shd-bx")
     # apply results for jobs in the code
-    for i,job in enumerate(jobs):
-        publishing_date = job.find('span', class_= "sim-posted").text.replace(' ', '')
+    for job in jobs:
+        publishing_date = job.find('span', class_= "sim-posted").span.text
         # define a condition, to know if the jobs were recently posted or not, use the keyword 'few' to search for these recent jobbs
         if 'few' in publishing_date:
             company_name = job.find('h3', class_= 'joblist-comp-name').text.replace(' ', '')
-            job_time = job.find('ul', class_ = "top-jd-dtl clearfix").text.replace(' ')
+            # job_time = job.find().replace(' ', '')
+            # job_location = job.find('span', class_ = '')
             key_skills = job.find('span', class_ = "srp-skills").text.replace(' ', '')
             # first tag or top tag on the website format:
             # travel to header, then to h2 tag, and finally to the a tag(information is stored there w/ link for info)
@@ -51,20 +52,25 @@ def find_jobs():
             if unfamiliar_skill not in key_skills:
                 # creating a file name to display the text values
                 # use the 'w' to write within this new file, no longer read
-                with open(f'posts/ {i}.txt', 'w') as f:
+
                     # '\n will break a line within the text file...making it more presentable within the file'
-                    f.write(f"Company Name: {company_name.strip()} \n")
-                    f.write(f"Skills Required: {key_skills.strip()} \n")
-                    f.write(f"Length of Job: {job_time.strip()} \n")
-                    f.write(f"More information: {more_info.strip()}")
-
+                    # could use f.write in front to write on a separate file
+                    print(f"Company Name: {company_name.strip()} \n")
+                    print(f"Skills Required: {key_skills.strip()} \n")
+                    # print(f"Location: {job_location.strip()} \n")
+                    # print(f"Length of Job: {job_time.strip()} \n")
+                    print(f"More information: {more_info.strip()}")
                     # provides an extra space for your displaying of information
-                    print(f'File Saved: {i}')
+                    # print(f'File Saved: {index}')
+                    print('')
 
-# __name__ == '__main__' will 
+
+# __name__ == '__main__' will check whether the current script is being run in the program, then calls the main() func to execute the code
 if __name__ == '__main__':
     while True:
+        # call back main func
         find_jobs()
+        # will scrape the website every 10 minutes and print new results
         time_wait = 10
         print(f"Waiting: {time_wait} seconds...")
-        time.sleep(time_wait*60)
+        time.sleep(time_wait*30)
