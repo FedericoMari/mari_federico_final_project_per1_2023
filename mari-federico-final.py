@@ -5,8 +5,10 @@
 
 # title: "End Carbon Emissions"
 
-'''Goals: Find an automotive website and screeen scrape its contents using the directions from 'How to Automate the Boring
-Stuff With Python'''
+'''1st Goal: Find a job-listing website and screeen scrape its contents (jobs, companies, more info, possibly contract time and location, will have to see) 
+using the directions from 'How to Automate the Boring Stuff With Python' and my youtube video source code
+    2nd Goal: Display the contents of the screen scraper within a separate terminal, not default vscode... (tkinter?)
+'''
 # parses HTML or the format in which web pages are written in
 from bs4 import BeautifulSoup
 # This library launches and controls a web browser, it is able to simulate mouse clicks in this browser
@@ -70,7 +72,7 @@ if __name__ == '__main__':
     while True:
         # call back main func
         find_jobs()
-        # will scrape the website every 10 minutes and print new results
+        # will scrape the website every 5 minutes and print an updated version of the results from the website
         time_wait = 10
         print(f"Waiting: {time_wait} seconds...")
         time.sleep(time_wait*30)
