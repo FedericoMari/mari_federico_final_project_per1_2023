@@ -60,7 +60,7 @@ def find_jobs():
                     # '\n will break a line within the text file...making it more presentable within the file'
                     # could use f.write in front to write on a separate file
                     print(f"Company Name: {company_name.strip()} \n")
-                    print(f"Skills Required: {key_skills.strip()} \n")
+                    print(f"Skills Required: {key_skills.strip()}")
                     # print(f"Location: {job_location.strip()} \n")
                     # print(f"Length of Job: {job_time.strip()} \n")
                     print(f"More information: {more_info.strip()}")
