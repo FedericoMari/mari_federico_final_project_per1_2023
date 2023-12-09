@@ -70,6 +70,6 @@ if __name__ == '__main__':
     while True:
         # call back main functions 
         find_jobs()
-        time_wait = 1
-        print(f"Waiting: {time_wait} minute...")
+        time_wait = 10
+        print(f"Waiting: {time_wait} minutes...")
         time.sleep(time_wait*60)
