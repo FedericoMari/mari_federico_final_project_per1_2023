@@ -3,7 +3,7 @@
 '''sources: "freeCodeCamp.org" (greate YT channel with a 1 hour tutorial on web-scraping), "The Nature of Code", 
 "How To Automate The Boring Stuff With Python'''
 
-# title: "End Carbon Emissions"
+# title: "Architectural Jobs Right For You"
 
 '''1st Goal: Find a job-listing website and screeen scrape its contents (jobs, companies, more info, possibly contract time and location, will have to see) 
 using the directions from 'How to Automate the Boring Stuff With Python' and my youtube video source code
@@ -11,15 +11,11 @@ using the directions from 'How to Automate the Boring Stuff With Python' and my 
 '''
 # parses HTML or the format in which web pages are written in
 from bs4 import BeautifulSoup
-# This library launches and controls a web browser, it is able to simulate mouse clicks in this browser
-import selenium
 # downloads the desired files and pages from the internet
 import requests
-# opens a web browser to a specifc page on the web
-import webbrowser
+import os 
 import time
-from tkinter import ttk
-from tkinter import *
+
 
 # user could provide some information to specify the job 
 print("Specify the skills you are unfamiliar with...")
@@ -27,6 +23,8 @@ print("Specify the skills you are unfamiliar with...")
 unfamiliar_skill = input('>')
 # will filter out/remove the input provided by the user...
 print(f"Filtering out: {unfamiliar_skill}")
+# define the output file for the text products:
+file = "jobs_list.txt"
 
 def find_jobs():
     # get specific info from a we bsite, include website url as string
@@ -38,7 +36,7 @@ def find_jobs():
     # located underneath the 'ul' tag (unordered list with 'li')
     # use find_all() func to list all the jobs in website 
     jobs = soup.find_all('li', class_= "clearfix job-bx wht-shd-bx")
-    # apply results for jobs in the code
+    # apply results for jobs in the code and enumerate them so they are displayed in order within the text file
     for job in jobs:
         publishing_date = job.find('span', class_= "sim-posted").span.text
         # define a condition, to know if the jobs were recently posted or not, use the keyword 'few' to search for these recent jobbs
@@ -51,21 +49,20 @@ def find_jobs():
             # travel to header, then to h2 tag, and finally to the a tag(information is stored there w/ link for info)
             # print'href' because it is specified in a tag, this variable contains the link, print it in string datatype
             more_info = job.header.h2.a['href'].replace(' ', '')
+        if os.path.exists(file):
             if unfamiliar_skill not in key_skills:
                 # creating a file name to display the text values
                 # use the 'w' to write within this new file, no longer read
-
+                with open(file, "w") as f:
                     # '\n will break a line within the text file...making it more presentable within the file'
                     # could use f.write in front to write on a separate file
-                    print(f"Company Name: {company_name.strip()} \n")
-                    print(f"Skills Required: {key_skills.strip()} \n")
+                    f.write(f"Company Name: {company_name.strip()} \n")
+                    f.write(f"Skills Required: {key_skills.strip()} \n")
                     # print(f"Location: {job_location.strip()} \n")
                     # print(f"Length of Job: {job_time.strip()} \n")
-                    print(f"More information: {more_info.strip()}")
+                    f.write(f"More information: {more_info.strip()}")
                     # provides an extra space for your displaying of information
                     # print(f'File Saved: {index}')
-                    print('')
-
 
 # __name__ == '__main__' will check whether the current script is being run in the program, then calls the main() func to execute the code
 if __name__ == '__main__':
