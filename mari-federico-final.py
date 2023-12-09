@@ -15,7 +15,8 @@ from bs4 import BeautifulSoup
 import requests
 import os 
 import time
-from os import *
+from tkinter import ttk
+from tkinter import *
 
 # define the output file for the text products:
 # file = "jobs_list.txt"
@@ -26,6 +27,8 @@ print("Specify the skills you are unfamiliar with...")
 unfamiliar_skill = input('>')
 # will filter out/remove the input provided by the user...
 print(f"Filtering out: {unfamiliar_skill}")
+# define the output file for the text products:
+file = "jobs_list.txt"
 
 def find_jobs():
     # get specific info from a we bsite, include website url as string
@@ -37,8 +40,8 @@ def find_jobs():
     # located underneath the 'ul' tag (unordered list with 'li')
     # use find_all() func to list all the jobs in website 
     jobs = soup.find_all('li', class_= "clearfix job-bx wht-shd-bx")
-    # provide a for loop to validate whether jobs exist in the job_list from above^
-    for index, job in enumerate(jobs):
+    # apply results for jobs in the code
+    for job in jobs:
         publishing_date = job.find('span', class_= "sim-posted").span.text
         # define a condition, to know if the jobs were recently posted or not, use the keyword 'few' to search for these recent jobbs
         if 'few' in publishing_date:
@@ -50,20 +53,21 @@ def find_jobs():
             # travel to header, then to h2 tag, and finally to the a tag(information is stored there w/ link for info)
             # print'href' because it is specified in a tag, this variable contains the link, print it in string datatype
             more_info = job.header.h2.a['href'].replace(' ', '')
-            # conditional statement to discern whether the skill you do not know is not in the required job skills for each company
             if unfamiliar_skill not in key_skills:
-                with open(f'posts/{index}.txt', 'w') as f:
-                    # creating a file name to display the text values
-                    # use the 'w' to write within this new file, no longer read
+                # creating a file name to display the text values
+                # use the 'w' to write within this new file, no longer read
+
                     # '\n will break a line within the text file...making it more presentable within the file'
                     # could use f.write in front to write on a separate file
-                    f.write(f"Company Name: {company_name.strip()} \n")
-                    f.write(f"Skills Required: {key_skills.strip()}")
+                    print(f"Company Name: {company_name.strip()} \n")
+                    print(f"Skills Required: {key_skills.strip()} \n")
                     # print(f"Location: {job_location.strip()} \n")
                     # print(f"Length of Job: {job_time.strip()} \n")
-                    f.write(f"More information: {more_info}")
-                    # adds separations between each data display for the job info:
-                    print(f'File Saved: {index}')
+                    print(f"More information: {more_info.strip()}")
+                    # provides an extra space for your displaying of information
+                    # print(f'File Saved: {index}')
+                    print('')
+
 
 # __name__ == '__main__' will check whether the current script is being run in the program, then calls the main() func to execute the code
 if __name__ == '__main__':
