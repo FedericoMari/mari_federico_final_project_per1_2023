@@ -20,7 +20,14 @@ from tkinter import *
 
 # define the output file for the text products:
 # file = "jobs_list.txt"
-
+# has an issue here: 
+job_selection = True
+def job_choice():
+    while job_selection:
+        print(input("Which company looks best? "))
+        if input in company_name:
+            print(f"Here is your full info. for this company: {input.strip()} + {key_skills.strip()} + {more_info.strip()}")
+        
 #user could provide some information to specify the job 
 print("Specify the skills you are unfamiliar with...")
 # later use this variable to 
@@ -31,6 +38,12 @@ print(f"Filtering out: {unfamiliar_skill}")
 file = "jobs_list.txt"
 
 def find_jobs():
+# globalize the variables to be utilized within the whole scope of the py file:
+    global jobs
+    global company_name
+    global key_skills
+    global more_info
+    
     # get specific info from a we bsite, include website url as string
     html_text = requests.get('https://www.timesjobs.com/candidate/job-search.html?searchType=personalizedSearch&from=submit&searchTextSrc=as&searchTextText=%22Architectural+Design%22&txtKeywords=%22Architectural+Design%22&txtLocation=').text
 
@@ -74,6 +87,7 @@ if __name__ == '__main__':
     while True:
         # call back main functions 
         find_jobs()
+        job_choice()
         time_wait = 10
         print(f"Waiting: {time_wait} minutes...")
         time.sleep(time_wait*60)
