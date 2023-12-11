@@ -47,7 +47,9 @@ def find_jobs():
     # get specific info from a we bsite, include website url as string
     html_text = requests.get('https://www.timesjobs.com/candidate/job-search.html?searchType=personalizedSearch&from=submit&searchTextSrc=as&searchTextText=%22Architectural+Design%22&txtKeywords=%22Architectural+Design%22&txtLocation=').text
 
-    # parse the html file with lxml 
+    ''' parse the html file with lxml, will edit the 'parse tree' (hierarchy of elements within the code and relationship between them) 
+    of a python function and make it executable in the code '''
+
     soup = BeautifulSoup(html_text, 'lxml')
     # for this job website accumulate all the jobs (first element of find_all func is the item tags, then the class_ from html)
     # located underneath the 'ul' tag (unordered list with 'li')

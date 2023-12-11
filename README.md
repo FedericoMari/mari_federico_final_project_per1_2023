@@ -35,4 +35,4 @@ This project is licensed under the [MIT] License - see the LICENSE.md file for d
 
 Acknowledgments:
 Sweigart, Al, "How to Automate the Borint Stuff With Python"
-"freeCodeCamp.org"
+"freeCodeCamp.org", certain code from Chris Cozort, "cchris@bcp.org"
