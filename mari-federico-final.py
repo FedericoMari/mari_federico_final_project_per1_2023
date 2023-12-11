@@ -9,14 +9,14 @@
 using the directions from 'How to Automate the Boring Stuff With Python' and my youtube video source code
     2nd Goal: Request a user input for the specific company of choice, filter down even further for ONE company...
 '''
-# parses HTML or the format in which web pages are written in
+# import all libraries: 
+
+# most essential library for screen scraping
 from bs4 import BeautifulSoup
 # downloads the desired files and pages from the internet
 import requests
 import os 
 import time
-from tkinter import ttk
-from tkinter import *
 
 
 #user could provide some information to specify the job 
@@ -38,9 +38,8 @@ def find_jobs():
     # get specific info from a we bsite, include website url as string using the requests library
     html_text = requests.get('https://www.timesjobs.com/candidate/job-search.html?searchType=personalizedSearch&from=submit&searchTextSrc=as&searchTextText=%22Architectural+Design%22&txtKeywords=%22Architectural+Design%22&txtLocation=').text
 
-    ''' parse the html file with lxml, will edit the 'parse tree' (hierarchy of elements within the code and relationship between them) 
-    of a python function and make it executable in the code '''
-
+    '''parse the html file (format in which pages are written in) with lxml, will edit the 'parse tree' (hierarchy of elements within the code and relationship between them) 
+    of a python function and make it executable in the code'''
     soup = BeautifulSoup(html_text, 'lxml')
     # for this job website accumulate all the jobs (first element of find_all func is the item tags, then the class_ from html)
     # located underneath the 'ul' tag (unordered list with 'li')
@@ -49,7 +48,7 @@ def find_jobs():
     # apply results for jobs in the code
     for job in jobs:
         publishing_date = job.find('span', class_= "sim-posted").span.text
-        # define a condition, to know if the jobs were recently posted or not, use the keyword 'few' to search for these recent jobbs
+        # define a condition, to know if the jobs were recently posted or not, use the keyword 'few' to search for these recent jobs
         if 'few' in publishing_date:
             company_name = job.find('h3', class_= 'joblist-comp-name').text.replace(' ', '')
             # job_time = job.find().replace(' ', '')
