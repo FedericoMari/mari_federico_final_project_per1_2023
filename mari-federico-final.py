@@ -25,7 +25,7 @@ job_selection = True
 def job_choice():
     while job_selection:
         print(input("Which company looks best? "))
-        if input in company_name:
+        if input in str(company_name):
             print(f"Here is your full info. for this company: {input.strip()} + {key_skills.strip()} + {more_info.strip()}")
         
 #user could provide some information to specify the job 
@@ -82,7 +82,6 @@ def find_jobs():
                     # provides an extra space for your displaying of information
                     # print(f'File Saved: {index}')
                     print('')
-
 
 # __name__ == '__main__' will check whether the current script is being run in the program, then calls the main() func to execute the code
 if __name__ == '__main__':
