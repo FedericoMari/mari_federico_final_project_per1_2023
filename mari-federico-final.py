@@ -7,7 +7,6 @@
 
 '''1st Goal: Find a job-listing website and screeen scrape its contents (jobs, companies, more info, possibly contract time and location, will have to see) 
 using the directions from 'How to Automate the Boring Stuff With Python' and my youtube video source code
-    2nd Goal: Request a user input for the specific company of choice, filter down even further for ONE company...
 '''
 # import all libraries: 
 
@@ -15,7 +14,7 @@ using the directions from 'How to Automate the Boring Stuff With Python' and my 
 from bs4 import BeautifulSoup
 # downloads the desired files and pages from the internet
 import requests
-import os 
+from os import path 
 import time
 
 #user could provide some information to specify the job 
