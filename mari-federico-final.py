@@ -51,8 +51,9 @@ def find_jobs():
         # define a condition, to know if the jobs were recently posted or not, use the keyword 'few' to search for these recent jobs
         if 'few' in publishing_date:
             company_name = job.find('h3', class_= 'joblist-comp-name').text.replace(' ', '')
-            # job_time = job.find().replace(' ', '')
-            # job_location = job.find('span', class_ = '')
+            job_time = soup.find('li', '$0')
+            # job_pay = job.find().replace(' ', '')
+            job_location = soup.find('span', title_ = '$0')
             key_skills = job.find('span', class_ = "srp-skills").text.replace(' ', '')
             # first tag or top tag on the website format:
             # travel to header, then to h2 tag, and finally to the a tag(information is stored there w/ link for info)
@@ -60,14 +61,13 @@ def find_jobs():
             more_info = job.header.h2.a['href'].replace(' ', '')
             if unfamiliar_skill not in key_skills:
                 # creating a file name to display the text values
-                # use the 'w' to write within this new file, no longer read
-
                     # '\n will break a line within the text file...making it more presentable within the file'
                     # could use f.write in front to write on a separate file
                     print(f"Company Name: {company_name.strip()} \n")
                     print(f"Skills Required: {key_skills.strip()}")
-                    # print(f"Location: {job_location.strip()} \n")
-                    # print(f"Length of Job: {job_time.strip()} \n")
+                    print(f"Location: {job_location}")
+                    # print(f"Salary: {job_pay}")
+                    print(f"Length of Job: {job_time}")
                     print(f"More information: {more_info.strip()}")
                     # provides an extra space for your displaying of information
                     # print(f'File Saved: {index}')
@@ -76,20 +76,21 @@ def find_jobs():
 # define the output file for the text products:
 # file = "jobs_list.txt"
 # has an issue here: 
-job_selection = True
-def job_choice():
-    while job_selection:
-        user_input = input 
-        print(user_input("Which company looks best? "))
-        if user_input in str(company_name):
-            print(f"Here is your full info. for this company: {input.strip()} + {key_skills.strip()} + {more_info.strip()}")
+# job_selection = True
+# def job_choice():
+#     while job_selection:
+#         user_input = input 
+#         print(user_input("Which company looks best? "))
+#         if user_input in str(company_name):
+#             print(f"Here is your full info. for this company: {input.strip()} + {key_skills.strip()} + {more_info.strip()}")
 
 # __name__ == '__main__' will check whether the current script is being run in the program, then calls the main() func to execute the code
 if __name__ == '__main__':
     while True:
         # call back main functions
         find_jobs()
-        job_choice() 
+        # job_choice() 
         time_wait = 10
+        print("You may now consider your options...")
         print(f"Waiting: {time_wait} minutes...")
         time.sleep(time_wait*60)
