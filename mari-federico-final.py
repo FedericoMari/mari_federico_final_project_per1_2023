@@ -1,18 +1,18 @@
 # this file was created by Federico Mari on 11/16/2023
 
-'''sources: "freeCodeCamp.org" (greate YT channel with a 1 hour tutorial on web-scraping), "The Nature of Code", 
-"How To Automate The Boring Stuff With Python'''
+''' sources: "freeCodeCamp.org" (greate YT channel with a 1 hour tutorial on web-scraping and will be my base-code), "The Nature of Code", 
+"How To Automate The Boring Stuff With Python (for general practicality and usage)" '''
 
 # title: "Architectural Jobs Right For You"
 
-'''1st Goal: Find a job-listing website and screeen scrape its contents (jobs, companies, more info, possibly contract time and location, will have to see) 
+''' Goal: Find a job-listing website and screeen scrape its contents (jobs, companies, more info, possibly contract time and location, will have to see) 
 using the directions from 'How to Automate the Boring Stuff With Python' and my youtube video source code
 '''
 # import all libraries: 
 
 # most essential library for screen scraping
 from bs4 import BeautifulSoup
-# downloads the desired files and pages from the internet
+# downloads the desired files and pages from the internet link
 import requests
 from os import path 
 import time
